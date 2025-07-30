@@ -624,6 +624,17 @@ impl Catalog for GlueCatalog {
         }
     }
 
+    /// Asynchronously registers an existing table into the Glue Catalog.
+    ///
+    /// Converts the provided table identifier and metadata location into a
+    /// Glue-compatible table representation, and attempts to create the
+    /// corresponding table in the Glue Catalog.
+    ///
+    /// # Returns
+    /// Returns `Ok(Table)` if the table is successfully registered and loaded.
+    /// If the registration fails due to validation issues, existing table conflicts,
+    /// metadata problems, or errors during the registration or loading process,
+    /// an `Err(...)` is returned.
     async fn register_table(
         &self,
         table: &TableIdent,
